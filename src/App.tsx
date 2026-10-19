@@ -1,9 +1,11 @@
 import MenuItem from "./components/MenuItem.tsx";
+import OrderContents from "./components/OrderContents.tsx";
+import OrderTotal from "./components/OrderTotal.tsx";
 import { menuItems } from "./data/db.ts";
 import useOrder  from "./hooks/useOrder.ts";
 function App() {
  
-  const {addItem} = useOrder();
+  const {order, addItem, removeItem} = useOrder();
   return (
     <>
       <header className="bg-teal-400 py-5 ">
@@ -28,8 +30,15 @@ function App() {
           </button>
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2>Consumo</h2>
+        <div className="bg-white rounded-lg shadow-md p-6 space-y-10">
+          <OrderContents
+            order={order}
+            removeItem={removeItem}
+          />
+
+          <OrderTotal
+          order={order}
+           />
         </div>
       </main>
     </>
