@@ -1,11 +1,12 @@
 import MenuItem from "./components/MenuItem.tsx";
 import OrderContents from "./components/OrderContents.tsx";
 import OrderTotal from "./components/OrderTotal.tsx";
+import TipPercentageForm from "./components/TipPercentageForm.tsx";
 import { menuItems } from "./data/db.ts";
 import useOrder  from "./hooks/useOrder.ts";
 function App() {
  
-  const {order, addItem, removeItem} = useOrder();
+  const {order, addItem, removeItem, tip, setTip, clearOrder} = useOrder();
   return (
     <>
       <header className="bg-teal-400 py-5 ">
@@ -35,9 +36,14 @@ function App() {
             order={order}
             removeItem={removeItem}
           />
-
+          <TipPercentageForm
+            setTip={setTip}
+            tip={tip}
+          />
           <OrderTotal
           order={order}
+          tip={tip}
+          clearOrder={clearOrder}
            />
         </div>
       </main>
